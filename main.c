@@ -11,3 +11,13 @@
     #include <sys/select.h>
 #endif
 
+#define WIDTH 20
+#define HEIGHT 40
+#define MAX_TAIL (WIDTH * HEIGHT)
+
+int maxTailX[MAX_TAIL], maxTailY[MAX_TAIL];
+int key, score, gameover;
+int TailLen;
+int x, y, fruitx, fruity;
+int speed;
+
