@@ -98,3 +98,22 @@ int onSnake(int cx, int cy) {
     }
     return 0;
 }
+
+void placeFruit() {
+    do {
+        fruitx = rand() % (WIDTH - 2) + 1;
+        fruity = rand() % (HEIGHT - 1) + 1;
+    } while (onSnake(fruitx, fruity));
+}
+
+void setup() {
+    srand((unsigned int)time(NULL));
+    gameover = 0;
+    key = 0;
+    score = 0;
+    TailLen = 0;
+    speed = 100;
+    x = WIDTH / 2;
+    y = HEIGHT / 2;
+    placeFruit();
+}
