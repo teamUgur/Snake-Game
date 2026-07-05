@@ -117,3 +117,44 @@ void setup() {
     y = HEIGHT / 2;
     placeFruit();
 }
+
+void draw() {
+
+    for (int i; i < WIDTH + 2; i++) {
+        putchar("-");
+    }
+    putchar("\n");
+
+    for (int i; i < HEIGHT; i++) {
+        for (int j; j <= WIDTH; j++) {
+            
+            if (j == 0 || j == WIDTH) {
+                putchar("#");
+                continue;
+            }
+
+            if (x == j && y == i) {
+                putchar("0");
+            } else if (fruitx == j && fruity == i) {
+                putchar("*");
+            } else {
+                int prTail = 0;
+                for (int k; k < TailLen; k++) {
+                    if (maxTailX[k] == j && maxTailY[k] ==i) {
+                        putchar("o");
+                        prTail = 1;
+                        break;
+                    }
+                }
+                if (!prTail) putchar(' ');
+            }
+        }
+    }
+
+    for (int i; i < WIDTH + 2; i++) {
+        putchar("-");
+    }
+    printf("\nScore: %-6d\n", score);
+    printf("Controls: W A S D | X to Quit          \n");
+    fflush(stdout);
+}
