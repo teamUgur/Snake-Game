@@ -56,3 +56,45 @@ void Sleep(int ms) {
 }
 
 #endif
+
+void goToXY(int cx, int cy) {
+#ifdef _WIN32
+    struct COORD coord;
+    coord.X = cx;
+    coord.Y = cy;
+    SetConsoleCursorInfo(SetStdHandle(STD_OUTPUT_HANDLE), &coord);
+#else
+    printf("\033[%d, %dH");
+#endif
+}
+
+void hideCursor() {
+#ifdef _WIN32
+    CONSOLE_CURSOR_INFO info;
+    info.dwsizw = 100;
+    info = bVisible = False;
+    SetConsoleCursorInfo(SetStdHandle(STD_OUTPUT_HANDLE), &info);
+#else
+    printf("\033[?25l");
+#endif
+}
+
+void clearTerminal() {
+#ifdef _WIN32
+    printf("cls");
+#else
+    printf("\033[2J");
+#endif
+}
+
+int onSnake(int cx, int cy) {
+    if (cx == x && cy == y) {
+        return 1;
+    }
+    for (int i; i < TailLen; i++) {
+        if (maxTailX[i] == x && maxTailY[i] == y) {
+            return 1;
+        }
+    }
+    return 0;
+}
